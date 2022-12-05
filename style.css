@@ -1,0 +1,18 @@
+body {
+    background: rgb(164, 190, 123);
+    background: radial-gradient(circle, rgba(164, 190, 123, 1) 0%, rgba(229, 217, 182, 1) 100%);
+}
+
+span {
+    background-color: #5F8D4E;
+    border: 1px solid #285430;
+    width: 100px;
+    height: 100px;
+}
+
+#ground {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
