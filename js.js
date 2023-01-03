@@ -2,12 +2,12 @@ const answer = confirm("6x6 or 8x8?if u choose 6*6 click ok plz.");
 if (answer == true) {
     for (let i = 0; i < 6; i++) {
 
-        document.getElementById("g1").innerHTML += `<span onclick='click("1-${Number(i+1)}")' id='1-${Number(i+1)}'></span>`;
-        document.getElementById("g2").innerHTML += `<span onclick='click("2-${Number(i+1)}")' id='2-${Number(i+1)}'></span>`;
-        document.getElementById("g3").innerHTML += `<span onclick='click("3-${Number(i+1)}")' id='3-${Number(i+1)}'></span>`;
-        document.getElementById("g4").innerHTML += `<span onclick='click("4-${Number(i+1)}")' id='4-${Number(i+1)}'></span>`;
-        document.getElementById("g5").innerHTML += `<span onclick='click("5-${Number(i+1)}")' id='5-${Number(i+1)}'></span>`;
-        document.getElementById("g6").innerHTML += `<span onclick='click("6-${Number(i+1)}")' id='6-${Number(i+1)}'></span>`;
+        document.getElementById("g1").innerHTML += `<span onclick='clicki("1-${Number(i+1)}")' id='1-${Number(i+1)}'></span>`;
+        document.getElementById("g2").innerHTML += `<span onclick='clicki("2-${Number(i+1)}")' id='2-${Number(i+1)}'></span>`;
+        document.getElementById("g3").innerHTML += `<span onclick='clicki("3-${Number(i+1)}")' id='3-${Number(i+1)}'></span>`;
+        document.getElementById("g4").innerHTML += `<span onclick='clicki("4-${Number(i+1)}")' id='4-${Number(i+1)}'></span>`;
+        document.getElementById("g5").innerHTML += `<span onclick='clicki("5-${Number(i+1)}")' id='5-${Number(i+1)}'></span>`;
+        document.getElementById("g6").innerHTML += `<span onclick='clicki("6-${Number(i+1)}")' id='6-${Number(i+1)}'></span>`;
 
 
 
@@ -39,14 +39,14 @@ if (answer == true) {
 
 } else {
     for (let i = 0; i < 8; i++) {
-        document.getElementById("g1").innerHTML += `<span onclick='click("1-${Number(i+1)}")' id='1-${Number(i+1)}'></span>`;
-        document.getElementById("g2").innerHTML += `<span onclick='click("2-${Number(i+1)}")' id='2-${Number(i+1)}'></span>`;
-        document.getElementById("g3").innerHTML += `<span onclick='click("3-${Number(i+1)}")' id='3-${Number(i+1)}'></span>`;
-        document.getElementById("g4").innerHTML += `<span onclick='click("4-${Number(i+1)}")' id='4-${Number(i+1)}'></span>`;
-        document.getElementById("g5").innerHTML += `<span onclick='click("5-${Number(i+1)}")' id='5-${Number(i+1)}'></span>`;
-        document.getElementById("g6").innerHTML += `<span onclick='click("6-${Number(i+1)}")' id='6-${Number(i+1)}'></span>`;
-        document.getElementById("g7").innerHTML += `<span onclick='click("7-${Number(i+1)}")' id='7-${Number(i+1)}'></span>`;
-        document.getElementById("g8").innerHTML += `<span onclick='click("8-${Number(i+1)}")' id='8-${Number(i+1)}'></span>`;
+        document.getElementById("g1").innerHTML += `<span onclick='clicki("1-${Number(i+1)}")' id='1-${Number(i+1)}'></span>`;
+        document.getElementById("g2").innerHTML += `<span onclick='clicki("2-${Number(i+1)}")' id='2-${Number(i+1)}'></span>`;
+        document.getElementById("g3").innerHTML += `<span onclick='clicki("3-${Number(i+1)}")' id='3-${Number(i+1)}'></span>`;
+        document.getElementById("g4").innerHTML += `<span onclick='clicki("4-${Number(i+1)}")' id='4-${Number(i+1)}'></span>`;
+        document.getElementById("g5").innerHTML += `<span onclick='clicki("5-${Number(i+1)}")' id='5-${Number(i+1)}'></span>`;
+        document.getElementById("g6").innerHTML += `<span onclick='clicki("6-${Number(i+1)}")' id='6-${Number(i+1)}'></span>`;
+        document.getElementById("g7").innerHTML += `<span onclick='clicki("7-${Number(i+1)}")' id='7-${Number(i+1)}'></span>`;
+        document.getElementById("g8").innerHTML += `<span onclick='clicki("8-${Number(i+1)}")' id='8-${Number(i+1)}'></span>`;
 
 
 
@@ -77,7 +77,7 @@ if (answer == true) {
 }
 var index = 0;
 
-function click(id) {
+function clicki(id) {
     if (Number(index) % 2 === 0) {
         const white = document.createElement("h1");
         document.getElementById(id).appendChild(white);
