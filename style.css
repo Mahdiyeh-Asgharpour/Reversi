@@ -6,6 +6,7 @@ body {
 span {
     background-color: #5F8D4E;
     border: 1px solid #285430;
+    color: #285430;
     width: 100px;
     height: 100px;
     border-radius: 10px;
