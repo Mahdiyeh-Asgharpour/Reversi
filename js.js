@@ -86,9 +86,8 @@ if (answer == true) {
 var index = 0;
 
 function clicki(id) {
-    if (document.getElementById(id).innerHTML !== "") {
+    if (document.getElementById(id).getElementsByTagName("h1").length !== 0) {
         alert("error");
-        index++;
 
     } else {
 
