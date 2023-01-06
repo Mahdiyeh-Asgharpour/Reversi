@@ -113,6 +113,15 @@ function clicki(id) {
 }
 
 function reversigame(id){
+    const idd=document.getElementById(id);
+    const idc=idd.id.charAt(2);
+    const idr=idd.id.charAt(0);
+    const mohre=document.getElementById("h"+id);
+    const color=mohre.style.color;
+    for(i=1;i<=idr;i++)
+        if(document.getElementById("h"+i+"-"+idc).style.color===color)
+            for(j=i+1;j<idr;j++)
+                document.getElementById("h"+j+"-"+idc).style.color=color;
 
 }
 
