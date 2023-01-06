@@ -2,12 +2,12 @@ const answer = confirm("6x6 or 8x8?if u choose 6*6 click ok plz.");
 if (answer == true) {
     for (let i = 0; i < 6; i++) {
 
-        document.getElementById("g1").innerHTML += `<span onclick='reversi("1-${Number(i+1)}")' id='1-${Number(i+1)}'>${String.fromCharCode(i + 65)}-${i+1}</span>`;
-        document.getElementById("g2").innerHTML += `<span onclick='reversi("2-${Number(i+1)}")' id='2-${Number(i+1)}'>${String.fromCharCode(i + 65)}-${i+1}</span>`;
-        document.getElementById("g3").innerHTML += `<span onclick='reversi("3-${Number(i+1)}")' id='3-${Number(i+1)}'>${String.fromCharCode(i + 65)}-${i+1}</span>`;
-        document.getElementById("g4").innerHTML += `<span onclick='reversi("4-${Number(i+1)}")' id='4-${Number(i+1)}'>${String.fromCharCode(i + 65)}-${i+1}</span>`;
-        document.getElementById("g5").innerHTML += `<span onclick='reversi("5-${Number(i+1)}")' id='5-${Number(i+1)}'>${String.fromCharCode(i + 65)}-${i+1}</span>`;
-        document.getElementById("g6").innerHTML += `<span onclick='reversi("6-${Number(i+1)}")' id='6-${Number(i+1)}'>${String.fromCharCode(i + 65)}-${i+1}</span>`;
+        document.getElementById("g1").innerHTML += `<span onclick='reversi("1-${Number(i+1)}")' id='1-${Number(i+1)}'>${String.fromCharCode(i+ 65)}-1</span>`;
+        document.getElementById("g2").innerHTML += `<span onclick='reversi("2-${Number(i+1)}")' id='2-${Number(i+1)}'>${String.fromCharCode(i + 65)}-2</span>`;
+        document.getElementById("g3").innerHTML += `<span onclick='reversi("3-${Number(i+1)}")' id='3-${Number(i+1)}'>${String.fromCharCode(i + 65)}-3</span>`;
+        document.getElementById("g4").innerHTML += `<span onclick='reversi("4-${Number(i+1)}")' id='4-${Number(i+1)}'>${String.fromCharCode(i + 65)}-4</span>`;
+        document.getElementById("g5").innerHTML += `<span onclick='reversi("5-${Number(i+1)}")' id='5-${Number(i+1)}'>${String.fromCharCode(i+ 65)}-5</span>`;
+        document.getElementById("g6").innerHTML += `<span onclick='reversi("6-${Number(i+1)}")' id='6-${Number(i+1)}'>${String.fromCharCode(i + 65)}-6</span>`;
 
 
 
@@ -43,14 +43,14 @@ if (answer == true) {
 
 } else {
     for (let i = 0; i < 8; i++) {
-        document.getElementById("g1").innerHTML += `<span onclick='reversi("1-${Number(i+1)}")' id='1-${Number(i+1)}'>${String.fromCharCode(i + 65)}-${i+1}</span>`;
-        document.getElementById("g2").innerHTML += `<span onclick='reversi("2-${Number(i+1)}")' id='2-${Number(i+1)}'>${String.fromCharCode(i + 65)}-${i+1}</span>`;
-        document.getElementById("g3").innerHTML += `<span onclick='reversi("3-${Number(i+1)}")' id='3-${Number(i+1)}'>${String.fromCharCode(i + 65)}-${i+1}</span>`;
-        document.getElementById("g4").innerHTML += `<span onclick='reversi("4-${Number(i+1)}")' id='4-${Number(i+1)}'>${String.fromCharCode(i + 65)}-${i+1}</span>`;
-        document.getElementById("g5").innerHTML += `<span onclick='reversi("5-${Number(i+1)}")' id='5-${Number(i+1)}'>${String.fromCharCode(i + 65)}-${i+1}</span>`;
-        document.getElementById("g6").innerHTML += `<span onclick='reversi("6-${Number(i+1)}")' id='6-${Number(i+1)}'>${String.fromCharCode(i + 65)}-${i+1}</span>`;
-        document.getElementById("g7").innerHTML += `<span onclick='reversi("7-${Number(i+1)}")' id='7-${Number(i+1)}'>${String.fromCharCode(i + 65)}-${i+1}</span>`;
-        document.getElementById("g8").innerHTML += `<span onclick='reversi("8-${Number(i+1)}")' id='8-${Number(i+1)}'>${String.fromCharCode(i + 65)}-${i+1}</span>`;
+        document.getElementById("g1").innerHTML += `<span onclick='reversi("1-${Number(i+1)}")' id='1-${Number(i+1)}'>${String.fromCharCode(i + 65)}-1</span>`;
+        document.getElementById("g2").innerHTML += `<span onclick='reversi("2-${Number(i+1)}")' id='2-${Number(i+1)}'>${String.fromCharCode(i + 65)}-2</span>`;
+        document.getElementById("g3").innerHTML += `<span onclick='reversi("3-${Number(i+1)}")' id='3-${Number(i+1)}'>${String.fromCharCode(i + 65)}-3</span>`;
+        document.getElementById("g4").innerHTML += `<span onclick='reversi("4-${Number(i+1)}")' id='4-${Number(i+1)}'>${String.fromCharCode(i + 65)}-4</span>`;
+        document.getElementById("g5").innerHTML += `<span onclick='reversi("5-${Number(i+1)}")' id='5-${Number(i+1)}'>${String.fromCharCode(i + 65)}-5</span>`;
+        document.getElementById("g6").innerHTML += `<span onclick='reversi("6-${Number(i+1)}")' id='6-${Number(i+1)}'>${String.fromCharCode(i + 65)}-6</span>`;
+        document.getElementById("g7").innerHTML += `<span onclick='reversi("7-${Number(i+1)}")' id='7-${Number(i+1)}'>${String.fromCharCode(i + 65)}-7</span>`;
+        document.getElementById("g8").innerHTML += `<span onclick='reversi("8-${Number(i+1)}")' id='8-${Number(i+1)}'>${String.fromCharCode(i + 65)}-8</span>`;
 
 
 
@@ -112,8 +112,11 @@ function clicki(id) {
     }
 }
 
+function reversigame(id){
 
+}
 
 function reversi(id) {
     clicki(id);
+    reversigame(id);
 }
