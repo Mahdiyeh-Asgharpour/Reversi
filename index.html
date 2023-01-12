@@ -1,28 +1,18 @@
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Reversi</title>
-    <link rel="stylesheet" href="style.css">
-</head>
+    <link rel="stylesheet" href="style.css" />
+  </head>
 
-<body>
-
-    <div id="ground">
-        <div id="g1"></div>
-        <div id="g2"></div>
-        <div id="g3"></div>
-        <div id="g4"></div>
-        <div id="g5"></div>
-        <div id="g6"></div>
-        <div id="g7"></div>
-        <div id="g8"></div>
-
-
-    </div>
+  <body>
+    <div  id="ground"></div>
+    <div id="diskLayer"></div>
+    <div id="canmovelayer"></div>
+    <div id="score" style="position:absolute; top: 850; width: 550; font-size: 48; background-color: rgb(164, 190, 123); color: #285430; text-align: center; border-radius: 10px;">black:2-white:2</div>
+    <button onclick="location.reload()" style="border-radius: 10px; background-color: #285430; color:  rgb(164, 190, 123); size: 10px; position: relative; text-align: center; top: 900; width: 50; margin-left: 6%; cursor: pointer;">Reload</button>
     <script src="js.js"></script>
-</body>
-
+  </body>
 </html>

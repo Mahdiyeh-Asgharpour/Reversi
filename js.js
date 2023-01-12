@@ -1,185 +1,320 @@
-const answer = confirm("6x6 or 8x8?if u choose 6*6 click ok plz.");
-var white=[];
-var black=[];
-if (answer == true) {
-    for (let i = 0; i < 6; i++) {
+var blackBackground;
+var diskLayer;
+var turn = 1;
+var scoreLabel;
+var gameOver=false;
+var canMoveLayer;
+ 
+let disks = [
+  [0, 0, 0, 0, 0, 0, 0, 0],
+  [0, 0, 0, 0, 0, 0, 0, 0],
+  [0, 0, 0, 0, 0, 0, 0, 0],
+  [0, 0, 0, 2, 1, 0, 0, 0],
+  [0, 0, 0, 1, 2, 0, 0, 0],
+  [0, 0, 0, 0, 0, 0, 0, 0],
+  [0, 0, 0, 0, 0, 0, 0, 0],
+  [0, 0, 0, 0, 0, 0, 0, 0],
+];
 
-        document.getElementById("g1").innerHTML += `<span onclick='reversi("1-${Number(i+1)}")' id='1-${Number(i+1)}'>${String.fromCharCode(i+ 65)}-1</span>`;
-        document.getElementById("g2").innerHTML += `<span onclick='reversi("2-${Number(i+1)}")' id='2-${Number(i+1)}'>${String.fromCharCode(i + 65)}-2</span>`;
-        document.getElementById("g3").innerHTML += `<span onclick='reversi("3-${Number(i+1)}")' id='3-${Number(i+1)}'>${String.fromCharCode(i + 65)}-3</span>`;
-        document.getElementById("g4").innerHTML += `<span onclick='reversi("4-${Number(i+1)}")' id='4-${Number(i+1)}'>${String.fromCharCode(i + 65)}-4</span>`;
-        document.getElementById("g5").innerHTML += `<span onclick='reversi("5-${Number(i+1)}")' id='5-${Number(i+1)}'>${String.fromCharCode(i+ 65)}-5</span>`;
-        document.getElementById("g6").innerHTML += `<span onclick='reversi("6-${Number(i+1)}")' id='6-${Number(i+1)}'>${String.fromCharCode(i + 65)}-6</span>`;
+window.onload = function () {
+  scoreLabel=document.getElementById("score");
+  canMoveLayer=document.getElementById("canmovelayer");
+  blackBackground = document.getElementById("ground");
+  diskLayer = document.getElementById("diskLayer");
 
+  for (let row = 0; row < 8; row++) {
+    for (let column = 0; column < 8; column++) {
+      var greenSquare = document.createElement("div");
+      greenSquare.style.position = "absolute";
+      greenSquare.style.width = "100px";
+      greenSquare.style.height = "100px";
+      greenSquare.style.borderRadius = "10px";
+      greenSquare.style.backgroundColor = "#5F8D4E";
+      greenSquare.style.left = (60 + 40) * column;
+      greenSquare.style.top = (60 + 40) * row;
+      greenSquare.innerText=String.fromCharCode(column + 65)+"-"+Number(row+1);
 
+      greenSquare.setAttribute(
+        "onclick",
+        "clickedSquare(" + row + ", " + column + ")"
+      );
 
-
+      blackBackground.appendChild(greenSquare);
     }
-    const white1 = document.createElement("h1");
-    document.getElementById("3-4").appendChild(white1);
-    white1.id = "h3-4";
-    white1.style.backgroundColor = "white";
-    white1.innerText = "o ";
-    white1.style.color = "white";
-    white.push(white1);
+  }
 
+  drawDisks();
+  drawCanMoveLayer();
+};
 
-    const white2 = document.createElement("h1");
-    document.getElementById("4-3").appendChild(white2);
-    white2.id = "h4-3";
-    white2.style.backgroundColor = "white";
-    white2.innerText = "o ";
-    white2.style.color = "white";
-    white.push(white2);
+function clickedSquare(row, column) {
+  if(gameOver) return;
+  if (disks[row][column] != 0) {
+    return;
+  }
 
-    const black1 = document.createElement("h1");
-    document.getElementById("3-3").appendChild(black1);
-    black1.id = "h3-3";
-    black1.style.backgroundColor = "black";
-    black1.innerText = "o";
-    black1.style.color = "black";
-    black.push(black1);
+  if (canClickSpot(turn,row, column) == true) {
+    var affectedDisks = getAffectedDisks(turn,row, column);
+    flipDisks(affectedDisks);
 
-
-    const black2 = document.createElement("h1");
-    document.getElementById("4-4").appendChild(black2);
-    black2.id = "h4-4";
-    black2.style.backgroundColor = "black";
-    black2.innerText = "o ";
-    black2.style.color = "black";
-    black.push(black2);
-
-
-
-} else {
-    for (let i = 0; i < 8; i++) {
-        document.getElementById("g1").innerHTML += `<span onclick='reversi("1-${Number(i+1)}")' id='1-${Number(i+1)}'>${String.fromCharCode(i + 65)}-1</span>`;
-        document.getElementById("g2").innerHTML += `<span onclick='reversi("2-${Number(i+1)}")' id='2-${Number(i+1)}'>${String.fromCharCode(i + 65)}-2</span>`;
-        document.getElementById("g3").innerHTML += `<span onclick='reversi("3-${Number(i+1)}")' id='3-${Number(i+1)}'>${String.fromCharCode(i + 65)}-3</span>`;
-        document.getElementById("g4").innerHTML += `<span onclick='reversi("4-${Number(i+1)}")' id='4-${Number(i+1)}'>${String.fromCharCode(i + 65)}-4</span>`;
-        document.getElementById("g5").innerHTML += `<span onclick='reversi("5-${Number(i+1)}")' id='5-${Number(i+1)}'>${String.fromCharCode(i + 65)}-5</span>`;
-        document.getElementById("g6").innerHTML += `<span onclick='reversi("6-${Number(i+1)}")' id='6-${Number(i+1)}'>${String.fromCharCode(i + 65)}-6</span>`;
-        document.getElementById("g7").innerHTML += `<span onclick='reversi("7-${Number(i+1)}")' id='7-${Number(i+1)}'>${String.fromCharCode(i + 65)}-7</span>`;
-        document.getElementById("g8").innerHTML += `<span onclick='reversi("8-${Number(i+1)}")' id='8-${Number(i+1)}'>${String.fromCharCode(i + 65)}-8</span>`;
-
-
-
+    disks[row][column] = turn;
+    if(turn==1 && canMove(2)) turn=2;
+    else if(turn==2 && canMove(1)) turn=1;
+    if(canMove(1)==false && canMove(2)==false){
+      alert("Game Over");
+      gameOver=true;
     }
-    const white1 = document.createElement("h1");
-    document.getElementById("4-5").appendChild(white1);
-    white1.id = "h4-5";
-    white1.style.backgroundColor = "white";
-    white1.innerText = "o ";
-    white1.style.color = "white";
-    white.push(white1);
-
-
-
-    const white2 = document.createElement("h1");
-    document.getElementById("5-4").appendChild(white2);
-    white2.id = "h5-4";
-    white2.style.backgroundColor = "white";
-    white2.innerText = "o ";
-    white2.style.color = "white";
-    white.push(white2);
-
-
-
-
-    const black1 = document.createElement("h1");
-    document.getElementById("4-4").appendChild(black1);
-    black1.id = "h4-4";
-    black1.style.backgroundColor = "black";
-    black1.innerText = "o";
-    black1.style.color = "black";
-    black.push(black1);
-
-
-
-    const black2 = document.createElement("h1");
-    document.getElementById("5-5").appendChild(black2);
-    black2.id = "h5-5";
-    black2.style.backgroundColor = "black";
-    black2.innerText = "o ";
-    black2.style.color = "black";
-    black.push(black2);
-
-
+    drawDisks();
+  drawCanMoveLayer();
+    reDrawScore();
+  }
 }
-var index = 0;
+function drawCanMoveLayer(){
 
-function clicki(id) {
-    if (document.getElementById(id).getElementsByTagName("h1").length !== 0) {
-        alert("error");
+  canMoveLayer.innerHTML = "";
+  for (let row = 0; row < 8; row++) {
+    for (let column = 0; column < 8; column++) {
+      var value = disks[row][column];
 
+      if (value == 0 &&canClickSpot(turn,row,column)) {
+        var diskOutLine = document.createElement("div");
+        diskOutLine.style.position = "absolute";
+        diskOutLine.style.width = "100px";
+        diskOutLine.style.height = "100px";
+        diskOutLine.style.borderRadius = "50px";
+        // diskOutLine.style.backgroundColor = "#5F8D4E";
+        diskOutLine.style.left = (60 + 40) * column;
+        diskOutLine.style.top = (60 + 40) * row;
+        diskOutLine.style.zIndex=2;
+        diskOutLine.setAttribute(
+          "onclick",
+          "clickedSquare(" + row + ", " + column + ")"
+        );
+        if (turn == 1) {
+         diskOutLine.style.border="2px solid black";
+        }
+        if (turn == 2) {
+         diskOutLine.style.border="2px solid white";
+          
+        }
+        canMoveLayer.appendChild(diskOutLine);
+      } 
+    }
+  }
+  }
+  
+function canMove(id){
+  for (let row = 0; row < 8; row++) {
+    for (let column = 0; column < 8; column++) {
+    if(canClickSpot(id,row,column)){
+      return true;
+    }
+    }}return false;
+}
+function reDrawScore(){
+  var ones=0;
+  var twos=0;
+  for (let row = 0; row < 8; row++) {
+    for (let column = 0; column < 8; column++) {
+      var value = disks[row][column];
+    if (value==1) ones +=1;
+    else if(value==2) twos+=1;
+    }}
+    scoreLabel.innerHTML="Black:"+ones+"-White:"+twos;
+}
+function canClickSpot(id,row, column) {
+  var affectedDisks = getAffectedDisks(id,row, column);
+  if (affectedDisks.length == 0) {
+    return false;
+  } else return true;
+}
+
+function getAffectedDisks(id,row, column) {
+  var affectedDisks = [];
+
+  // to the right
+  var couldBeAffected = [];
+  var columnIterator = column;
+  while (columnIterator < 7) {
+    columnIterator += 1;
+    var valueAtSpot = disks[row][columnIterator];
+    if (valueAtSpot == 0 || valueAtSpot == id) {
+      if (valueAtSpot == id) {
+        affectedDisks = affectedDisks.concat(couldBeAffected);
+      }
+      break;
     } else {
-
-        if (Number(index) % 2 === 0) {
-            const whitee = document.createElement("h1");
-            document.getElementById(id).appendChild(whitee);
-            whitee.id = "h" + id;
-            whitee.style.backgroundColor = "white";
-            whitee.innerText = "o ";
-            whitee.style.color = "white";
-            white.push(whitee);
-            index++;
-        } else {
-            const blackk = document.createElement("h1");
-            document.getElementById(id).appendChild(blackk);
-            blackk.id = "h" + id;
-            blackk.style.backgroundColor = "black";
-            blackk.innerText = "o ";
-            blackk.style.color = "black";
-            black.push(blackk);
-            index++;
-
-        }
+      var diskLocation = { row: row, column: columnIterator };
+      couldBeAffected.push(diskLocation);
     }
+  }
+
+  // to the left
+  var couldBeAffected = [];
+  var columnIterator = column;
+  while (columnIterator > 0) {
+    columnIterator -= 1;
+    var valueAtSpot = disks[row][columnIterator];
+    if (valueAtSpot == 0 || valueAtSpot == id) {
+      if (valueAtSpot == id) {
+        affectedDisks = affectedDisks.concat(couldBeAffected);
+      }
+      break;
+    } else {
+      var diskLocation = { row: row, column: columnIterator };
+      couldBeAffected.push(diskLocation);
+    }
+  }
+
+  // above
+  var couldBeAffected = [];
+  var rowIterator = row;
+  while (rowIterator > 0) {
+    rowIterator -= 1;
+    var valueAtSpot = disks[rowIterator][column];
+    if (valueAtSpot == 0 || valueAtSpot == id) {
+      if (valueAtSpot == id) {
+        affectedDisks = affectedDisks.concat(couldBeAffected);
+      }
+      break;
+    } else {
+      var diskLocation = { row: rowIterator, column: column };
+      couldBeAffected.push(diskLocation);
+    }
+  }
+
+  // below
+  var couldBeAffected = [];
+  var rowIterator = row;
+  while (rowIterator < 7) {
+    rowIterator += 1;
+    var valueAtSpot = disks[rowIterator][column];
+    if (valueAtSpot == 0 || valueAtSpot == id) {
+      if (valueAtSpot == id) {
+        affectedDisks = affectedDisks.concat(couldBeAffected);
+      }
+      break;
+    } else {
+      var diskLocation = { row: rowIterator, column: column };
+      couldBeAffected.push(diskLocation);
+    }
+  }
+
+  // down right
+  var couldBeAffected = [];
+  var rowIterator = row;
+  var columnIterator = column;
+  while (rowIterator < 7 && columnIterator < 7) {
+    rowIterator += 1;
+    columnIterator += 1;
+    var valueAtSpot = disks[rowIterator][columnIterator];
+    if (valueAtSpot == 0 || valueAtSpot == id) {
+      if (valueAtSpot == id) {
+        affectedDisks = affectedDisks.concat(couldBeAffected);
+      }
+      break;
+    } else {
+      var diskLocation = { row: rowIterator, column: columnIterator };
+      couldBeAffected.push(diskLocation);
+    }
+  }
+
+  // down left
+  var couldBeAffected = [];
+  var rowIterator = row;
+  var columnIterator = column;
+  while (rowIterator < 7 && columnIterator > 0) {
+    rowIterator += 1;
+    columnIterator -= 1;
+    var valueAtSpot = disks[rowIterator][columnIterator];
+    if (valueAtSpot == 0 || valueAtSpot == id) {
+      if (valueAtSpot == id) {
+        affectedDisks = affectedDisks.concat(couldBeAffected);
+      }
+      break;
+    } else {
+      var diskLocation = { row: rowIterator, column: columnIterator };
+      couldBeAffected.push(diskLocation);
+    }
+  }
+
+  // up left
+  var couldBeAffected = [];
+  var rowIterator = row;
+  var columnIterator = column;
+  while (rowIterator > 0 && columnIterator > 0) {
+    rowIterator -= 1;
+    columnIterator -= 1;
+    var valueAtSpot = disks[rowIterator][columnIterator];
+    if (valueAtSpot == 0 || valueAtSpot == id) {
+      if (valueAtSpot ==id) {
+        affectedDisks = affectedDisks.concat(couldBeAffected);
+      }
+      break;
+    } else {
+      var diskLocation = { row: rowIterator, column: columnIterator };
+      couldBeAffected.push(diskLocation);
+    }
+  }
+
+  // up right
+  var couldBeAffected = [];
+  var rowIterator = row;
+  var columnIterator = column;
+  while (rowIterator > 0 && columnIterator < 7) {
+    rowIterator -= 1;
+    columnIterator += 1;
+    var valueAtSpot = disks[rowIterator][columnIterator];
+    if (valueAtSpot == 0 || valueAtSpot == id) {
+      if (valueAtSpot ==id) {
+        affectedDisks = affectedDisks.concat(couldBeAffected);
+      }
+      break;
+    } else {
+      var diskLocation = { row: rowIterator, column: columnIterator };
+      couldBeAffected.push(diskLocation);
+    }
+  }
+
+  return affectedDisks;
 }
 
-function reversigame(id){
-    const idd=document.getElementById(id);
-    const idc=idd.id.charAt(2);
-    const idr=idd.id.charAt(0);
-    const mohre=document.getElementById("h"+id);
-    const color=mohre.style.color;
-    if(color =="white")
-    {
-        for(let i=0;i<black.length;i++)
-        {
-            const row= black[i].id.charAt(0);
-            const col=black[i].id.charAt(2);
-            const sum=Number(col)+Number(row);
-            const mine=Number(col)-Number(row);
-            if(row==idr ||col==idc ||sum ==Number(idc+idr)||mine==Number(idc-idr))
-            {
-                black[i].id.style.color="white";
-                white.push(black[i]);
-                black.pop(black[i]);
-            }
-           
-        }
+function flipDisks(affectedDisks) {
+  for (let i = 0; i < affectedDisks.length; i++) {
+    var spot = affectedDisks[i];
+    if (disks[spot.row][spot.column] == 1) {
+      disks[spot.row][spot.column] = 2;
+    } else {
+      disks[spot.row][spot.column] = 1;
     }
-    else{
-        for(let i=0;i<white.length;i++)
-        {
-            const row= black[i].id.charAt(0);
-            const col=black[i].id.charAt(2);
-            const sum=Number(col)+Number(row);
-            const mine=Number(col)-Number(row);
-            if(row==idr ||col==idc ||sum ==Number(idc+idr)||mine==Number(idc-idr))
-            {
-                white[i].id.style.color="black";
-                black.push(white[i]);
-                white.pop(white[i]);
-            }
-        }
-    }
+  }
 }
 
-function reversi(id) {
-    clicki(id);
-    reversigame(id);
-    console.log(white);
-    console.log(black);
+function drawDisks() {
+  diskLayer.innerHTML = "";
+  for (let row = 0; row < 8; row++) {
+    for (let column = 0; column < 8; column++) {
+      var value = disks[row][column];
+
+      if (value == 0) {
+      } else {
+        var disk = document.createElement("div");
+        disk.style.position = "absolute";
+        disk.style.width = "100px";
+        disk.style.height = "100px";
+        disk.style.borderRadius = "50px";
+        disk.style.backgroundColor = "#5F8D4E";
+        disk.style.left = (60 + 40) * column;
+        disk.style.top = (60 + 40) * row;
+
+        if (value == 1) {
+          disk.style.backgroundColor = "black";
+        }
+        if (value == 2) {
+          disk.style.backgroundColor = "white";
+        }
+        diskLayer.appendChild(disk);
+      }
+    }
+  }
 }

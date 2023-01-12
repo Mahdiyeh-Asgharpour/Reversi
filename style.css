@@ -1,41 +1,39 @@
+*{
+    margin-left: 25%;
+}
 body {
     background: rgb(164, 190, 123);
     background: radial-gradient(circle, rgba(164, 190, 123, 1) 0%, rgba(229, 217, 182, 1) 100%);
+    
+
 }
 
-span {
-    background-color: #5F8D4E;
+#ground {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+   
+}
+
+#ground > div {
     border: 1px solid #285430;
     color: #285430;
-    width: 100px;
-    height: 100px;
-    border-radius: 10px;
     display: flex;
-    flex-direction: row;
+    flex-direction:row;
     justify-content: center;
     align-items: center;
-    position: relative;
+    /* position:relative; */
     cursor: pointer;
-}
-
-#g1,
-#g2,
-#g3,
-#g4,
-#g5,
-#g6,
-#g7,
-#g8 {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
 }
 
 h1 {
     border-radius: 50px;
-    position: absolute;
+    position:absolute;
     width: 50px;
     height: 50px;
+
     /* border: 10px inset rgba(255, 0, 0, 0.727); */
+}
+#score{
+    margin-left: -13%;
 }
