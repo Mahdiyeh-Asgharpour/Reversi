@@ -68,6 +68,14 @@ function clickedSquare(row, column) {
   drawCanMoveLayer();
     reDrawScore();
   }
+  sessionStorage.setItem("disks",JSON.stringify(disks));
+  sessionStorage.setItem("turn",turn);
+  sessionStorage.setItem("gameover",gameOver);
+  if(JSON.parse(sessionStorage.getItem("disks"))&&sessionStorage.getItem("turn")&& sessionStorage.getItem("gameover")){
+    disks=JSON.parse(sessionStorage.getItem("disks"));
+    turn=sessionStorage.getItem("turn");
+    gameOver=sessionStorage.getItem("gameover")==="true";
+  }
 }
 function drawCanMoveLayer(){
 
